@@ -1,0 +1,2 @@
+FROM image_test
+RUN dotnet publish "Localisation.API.sln" -c Release -o /app/publish
