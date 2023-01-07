@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -f ./ToDoListAPI/.docker/Dockerfile.dep -t image_build .'
+                sh 'docker build -f ./ToDoListAPI/.docker/Dockerfile.b -t image_build .'
                 sh 'docker run --rm -v ${PWD}:/app image_build'
             }
         }
