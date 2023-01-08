@@ -1,4 +1,3 @@
 FROM image_publish
 WORKDIR /app
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ToDoListAPI.dll"]
