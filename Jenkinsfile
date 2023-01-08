@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """
                     docker build -f Dockerfile.dep -t image_deploy .
-                    docker run -d --name temp_cont -tty image_deploy
+                    docker run -d --name temp_cont --tty image_deploy
                     docker exec temp_cont ls
                     docker rm -f temp_cont
                 """
