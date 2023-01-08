@@ -24,11 +24,6 @@ pipeline {
                 sh 'docker run --rm -v ${PWD}:/app image_publish'
             }
         }
-        stage('Archive') {
-            steps {
-                sh 'docker build -o out --target archive -f ./ToDoListAPI/Dockerfile -t image_archive .'
-            }
-        }
         stage('Deploy') {
             steps {
                 sh 'docker build --target final -f ./ToDoListAPI/Dockerfile -t image_run .'
