@@ -21,7 +21,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'docker build --target publish -f ./ToDoListAPI/Dockerfile -t image_publish .'
-                sh 'docker run --name publish_cont --rm -v ${PWD}:/app image_publish'
+                sh 'docker run --rm -v ${PWD}:/app image_publish'
             }
         }
         stage('Deploy') {
