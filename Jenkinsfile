@@ -9,8 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker build --target build -f ./ToDoListAPI/Dockerfile  -t image_build .'
-                sh 'docker run --rm -v ${PWD}:/app image_build'
-                sh 'docker cp ${PWD}:/app/build .'
+                sh 'docker run --name build_cont --rm -v ${PWD}:/app image_build'
+                sh 'docker cp build_cont:/app/build .'
             }
         }
         stage('Test') {
