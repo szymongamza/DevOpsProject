@@ -8,26 +8,26 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build --target build -f ./ToDoListAPI/Dockerfile  -t image_build .'
-                sh 'docker run --rm -v ${PWD}:/app image_build'
+                sh 'docker build -f Dockerfile.b  -t image_build .'
             }
         }
         stage('Test') {
             steps {
-                sh 'docker build --target test -f ./ToDoListAPI/Dockerfile -t image_test .'
-                sh 'docker run --rm -v ${PWD}:/app image_test'
-            }
-        }
-        stage('Publish') {
-            steps {
-                sh 'docker build --target publish -f ./ToDoListAPI/Dockerfile -t image_publish .'
-                sh 'docker run --rm -v ${PWD}:/app image_publish'
+                sh 'docker build -f Dockerfile.t -t image_test .'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker build --target final -f ./ToDoListAPI/Dockerfile -t image_run .'
-                sh 'docker run -it -d image_run'
+                sh """
+                    docker build -f Dockerfile.dep -t image_deploy .
+                    docker run --name temp_cont image_deploy
+                    docker cp temp_cont:/app /app
+                    docker rm -f temp_cont
+                """
+                sh """
+                    docker build -f Dockerfile.pub -t image_publish
+                    docker run -d --name publish -tty image_publish
+                """
             }
         }
 
