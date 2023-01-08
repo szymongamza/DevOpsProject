@@ -1,0 +1,2 @@
+FROM image_test
+RUN dotnet publish "./ToDoListAPI.sln" -c Release -o /app/publish
