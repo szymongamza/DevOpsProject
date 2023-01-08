@@ -6,17 +6,17 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["/ToDoListAPI/ToDoListAPI.csproj", "."]
-RUN dotnet restore "./ToDoListAPI.csproj"
+COPY ["/ToDoListAPI/ToDoListAPI.sln", "."]
+RUN dotnet restore "./ToDoListAPI.sln"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "ToDoListAPI.csproj" -c Release -o /app/build
+RUN dotnet build "ToDoListAPI.sln" -c Release -o /app/build
 
 FROM build AS test
-RUN dotnet test "ToDoListAPI.csproj"
+RUN dotnet test "ToDoListAPI.sln"
 
 FROM build AS publish
-RUN dotnet publish "ToDoListAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "ToDoListAPI.sln" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
