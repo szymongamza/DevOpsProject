@@ -7,8 +7,8 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["ToDoListAPI.sln", "."]
-COPY ["/ToDoListAPI/*.csproj", "."]
-COPY ["/ToDoListAPI.Tests/*.csproj", "."]
+COPY ["./ToDoListAPI/ToDoListAPI.csproj", "."]
+COPY ["./ToDoListAPI.Tests/ToDoListAPI.Tests.csproj", "."]
 RUN dotnet restore "./ToDoListAPI.sln"
 COPY . .
 WORKDIR "/src/."
