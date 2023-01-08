@@ -9,6 +9,8 @@ WORKDIR /src
 COPY ["ToDoListAPI.sln", "."]
 COPY ["./ToDoListAPI/ToDoListAPI.csproj", "."]
 COPY ["./ToDoListAPI.Tests/ToDoListAPI.Tests.csproj", "."]
+RUN cd /src/ToDoListAPI
+RUN ls
 RUN dotnet restore "./ToDoListAPI.sln"
 COPY . .
 WORKDIR "/src/."
