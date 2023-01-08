@@ -12,6 +12,9 @@ COPY . .
 WORKDIR "/src/."
 RUN dotnet build "ToDoListAPI.csproj" -c Release -o /app/build
 
+FROM build AS test
+RUN dotnet test "ToDoListAPI.csproj"
+
 FROM build AS publish
 RUN dotnet publish "ToDoListAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
