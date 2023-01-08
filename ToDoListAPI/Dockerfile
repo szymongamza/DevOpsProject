@@ -20,6 +20,10 @@ RUN dotnet test "ToDoListAPI.sln"
 FROM build AS publish
 RUN dotnet publish "ToDoListAPI.sln" -c Release -o /app/publish /p:UseAppHost=false
 
+FROM base AS archive
+WORKDIR /app
+COPY --from=publish /app/publish .
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
