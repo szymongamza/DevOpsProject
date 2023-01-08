@@ -1,2 +1,2 @@
 FROM image_build
-RUN dotnet test ./InventoryUniversity.sln
+RUN dotnet test ./ToDoListAPI/ToDoListAPI.sln
