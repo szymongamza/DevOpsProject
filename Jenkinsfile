@@ -21,11 +21,12 @@ pipeline {
                 sh """
                     docker build -f Dockerfile.dep -t image_deploy .
                     docker run -d --name temp_cont --tty image_deploy
-                    docker exec temp_cont ls
+                    docker cp temp_cont:/app /tmp
                     docker rm -f temp_cont
                 """
                 sh """
-                    docker build -f Dockerfile.pub -t image_publish
+                    docker build -f Dockerfile.pub -t image_publish .
+                    rm /tmp/app
                 """
             }
         }
