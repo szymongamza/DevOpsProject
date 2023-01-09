@@ -19,7 +19,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh """
-                    docker build -f Dockerfile.dep -t image_deploy .
+                    docker build -f Dockerfile.pub -t image_deploy .
                     docker run -d --name temp_cont --tty image_deploy
                     docker cp temp_cont:/app ./artifacts
                     docker rm -f temp_cont
