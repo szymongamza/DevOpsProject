@@ -21,9 +21,14 @@ pipeline {
                 sh """
                     docker build -f Dockerfile.pub -t image_deploy .
                     docker run -d --name temp_cont --tty image_deploy
-                    docker cp temp_cont:/app ./artifacts
+                    docker cp temp_cont:/app/publish/ ./artifacts
                     docker rm -f temp_cont
                 """
+            }
+        }
+        post{
+            always{
+                archiveArtifacts 'artifacts'
             }
         }
 
