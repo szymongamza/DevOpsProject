@@ -30,6 +30,7 @@ pipeline {
                 archiveArtifacts artifacts: 'artifacts/win-x64.zip', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/osx-x64.tar', fingerprint: true
+                rm /artifacts
             }
         }
     }
