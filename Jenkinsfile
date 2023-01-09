@@ -25,8 +25,9 @@ pipeline {
                     docker rm -f temp_cont
                 """
                 sh """
-                    docker build -f Dockerfile.pub -t image_publish .
-                    rm /tmp/app
+                    ls
+                    cd /tmp
+                    ls
                 """
             }
         }
