@@ -24,9 +24,9 @@ pipeline {
                     docker cp temp_cont:/app/publish/ ./artifacts
                     docker rm -f temp_cont
                 """
-                zip zipFile: '/artifacts/win-x64.zip', archive: false, dir: '/artifacts/publish/win-x64'
-                tar file: '/artifacts/linux-x64.tar', archive: false, dir: '/artifacts/publish/linux-x64'
-                tar file: '/artifacts/osx-x64.tar', archive: false, dir: '/artifacts/publish/osx-x64'
+                zip zipFile: '/artifacts/win-x64.zip', archive: false, dir: '/artifacts/win-x64'
+                tar file: '/artifacts/linux-x64.tar', archive: false, dir: '/artifacts/linux-x64'
+                tar file: '/artifacts/osx-x64.tar', archive: false, dir: '/artifacts/osx-x64'
                 archiveArtifacts artifacts: '/artifacts/win-x64.zip', fingerprint: true
                 archiveArtifacts artifacts: '/artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: '/artifacts/osx-x64.tar', fingerprint: true
