@@ -23,13 +23,14 @@ pipeline {
                     docker run -d --name temp_cont --tty image_deploy
                     docker cp temp_cont:/app/publish/ ./artifacts
                     docker rm -f temp_cont
+                    zip zipFile: 'win-x64.zip', archive: false, dir: 'artifacts/win-x64'
+                    tar file: 'linux-x64.tar', archive: false, dir: 'artifacts/linux-x64'
+                    tar file: 'osx-x64.tar', archive: false, dir: 'artifacts/osx-x64'
+                    archiveArtifacts artifacts: 'win-x64.zip', fingerprint: true
+                    archiveArtifacts artifacts: 'linux-x64.tar', fingerprint: true
+                    archiveArtifacts artifacts: 'osx-x64.tar', fingerprint: true
                 """
             }
-        }
-    }
-    post{
-        always{
-            archiveArtifacts 'artifacts'
         }
     }
 }
