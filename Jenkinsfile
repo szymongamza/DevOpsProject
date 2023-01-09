@@ -30,10 +30,17 @@ pipeline {
                 archiveArtifacts artifacts: 'artifacts/win-x64.zip', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/osx-x64.tar', fingerprint: true
-                sh """
-                    rm -r ./artifacts
-                """
             }
+        }
+    }
+    post{
+        always{
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
 }
