@@ -31,7 +31,7 @@ pipeline {
                 archiveArtifacts artifacts: 'artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/osx-x64.tar', fingerprint: true
                 sh """
-                    rm ./artifacts
+                    rm -r ./artifacts
                 """
             }
         }
