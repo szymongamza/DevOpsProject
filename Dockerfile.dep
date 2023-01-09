@@ -1,2 +1,5 @@
-FROM image_test
-RUN dotnet publish "./ToDoListAPI.sln" -c Release -o /app/publish
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+EXPOSE 80
+WORKDIR /app
+COPY ./artifacts/dockerize/ .
+ENTRYPOINT ["dotnet", "ToDoListAPI.dll"]
