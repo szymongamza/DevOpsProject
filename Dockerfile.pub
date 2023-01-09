@@ -1,4 +1,4 @@
 FROM image_test
-RUN dotnet publish -r --self-contained win-x64 "./ToDoListAPI/ToDoListAPI.csproj" -c Release -o /app/publish/win-x64
-RUN dotnet publish -r --self-contained linux-x64 "./ToDoListAPI/ToDoListAPI.csproj" -c Release -o /app/publish/linux-x64
-RUN dotnet publish -r --self-contained osx-x64 "./ToDoListAPI/ToDoListAPI.csproj" -c Release -o /app/publish/osx-x64
+RUN dotnet publish -r win-x64 --self-contained true "./ToDoListAPI.sln" -c Release -o /app/publish/win-x64
+RUN dotnet publish -r linux-x64 --self-contained true "./ToDoListAPI.sln" -c Release -o /app/publish/linux-x64
+RUN dotnet publish -r osx-x64 --self-contained true "./ToDoListAPI.sln" -c Release -o /app/publish/osx-x64
