@@ -16,18 +16,13 @@ pipeline {
                 sh 'docker build -f Dockerfile.t -t image_test .'
             }
         }
-        stage('Deploy') {
+        stage('Publish') {
             steps {
                 sh """
                     docker build -f Dockerfile.dep -t image_deploy .
                     docker run -d --name temp_cont --tty image_deploy
-                    docker cp temp_cont:/app /tmp
+                    docker cp temp_cont:/app ./artifacts
                     docker rm -f temp_cont
-                """
-                sh """
-                    docker build -f Dockerfile.pub -t image_publish .
-                    docker run -d --name todolistapiserver image_publish
-                    rm /tmp/app
                 """
             }
         }
