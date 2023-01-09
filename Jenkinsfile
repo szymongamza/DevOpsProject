@@ -26,11 +26,10 @@ pipeline {
                 """
             }
         }
-        post{
-            always{
-                archiveArtifacts 'artifacts'
-            }
+    }
+    post{
+        always{
+            archiveArtifacts 'artifacts'
         }
-
     }
 }
