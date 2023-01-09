@@ -25,9 +25,9 @@ pipeline {
                     docker rm -f temp_cont
                 """
                 sh """
-                    ls
-                    cd /tmp
-                    ls
+                    docker build -f Dockerfile.pub -t image_publish .
+                    docker run -d --name todolistapiserver image_publish
+                    rm /tmp/app
                 """
             }
         }
