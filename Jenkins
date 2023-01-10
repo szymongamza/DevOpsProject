@@ -34,12 +34,12 @@ pipeline {
                 archiveArtifacts artifacts: 'artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/osx-x64.tar', fingerprint: true
                 sh 'docker build -f Dockerfile.deploy -t dahard/todo-list .'
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'rm -r ./artifacts'
             }
         }
         stage('Deploy') {
             steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'docker push dahard/todo-list'
             }
         }
