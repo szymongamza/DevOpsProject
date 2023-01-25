@@ -33,7 +33,7 @@ pipeline {
                 archiveArtifacts artifacts: 'artifacts/win-x64.zip', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/linux-x64.tar', fingerprint: true
                 archiveArtifacts artifacts: 'artifacts/osx-x64.tar', fingerprint: true
-                sh 'docker build -f Dockerfile.dep -t szymongamza/todolist:latest .'
+                sh 'docker build -f Dockerfile.dep -t szymongamza/todolist:swagger .'
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'rm -r ./artifacts'
             }
