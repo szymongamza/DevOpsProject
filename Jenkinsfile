@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker push szymongamza/todolist:latest'
+                sh 'docker push szymongamza/todolist:swagger'
             }
         }
     }
