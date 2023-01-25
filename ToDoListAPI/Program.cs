@@ -23,7 +23,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoListApi", Version = "v1", Description = "Api made for SPA frontend. Made by Daniel&Szymon" })
+    c.SwaggerDoc("v2", new OpenApiInfo { Title = "ToDoListApi", Version = "v2", Description = "Api made for SPA frontend. Made by Daniel&Szymon" })
 );
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -53,11 +53,10 @@ builder.Services.AddAuthentication(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseAuthorization();
 
